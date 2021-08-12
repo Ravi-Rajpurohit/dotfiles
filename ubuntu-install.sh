@@ -23,7 +23,11 @@ function aptInstall() {
 # }
 
 aptInstall git
+aptInstall gdebi-core
 aptInstall curl
+aptInstall make
+aptInstall diodon
+
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -56,17 +60,14 @@ wget -c -nc https://dl.google.com/linux/direct/google-chrome-stable_current_amd6
 wget -c -nc https://downloads.slack-edge.com/linux_releases/slack-desktop-4.4.2-amd64.deb && sudo gdebi -n ./slack-desktop-4.4.2-amd64.deb
 
 # zoom
-# wget -c -nc https://zoom.us/client/latest/zoom_amd64.deb && sudo gdebi -n ./zoom_amd64.deb
+wget -c -nc https://zoom.us/client/latest/zoom_amd64.deb && sudo gdebi -n ./zoom_amd64.deb
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # hyper
 
 # stable
-# wget -c -nc https://releases.hyper.is/download/deb -o hyper.deb && sudo gdebi -n ./hyper*.deb
-
-# canary
-wget -c -nc https://github.com/zeit/hyper/releases/download/v3.1.0-canary.4/hyper_3.1.0-canary.4_amd64.deb && sudo gdebi -n ./hyper*.deb
+wget -c -nc https://releases.hyper.is/download/deb -o hyper.deb && sudo gdebi -n ./hyper*.deb
 
 # set hyper as default terminal
 sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /opt/Hyper/hyper 50 #optional
@@ -101,15 +102,31 @@ aptInstall redis-server
 #fonts
 aptInstall fonts-firacode
 
-# NodeJs
-curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-aptInstall nodejs
+# NodeJs using n
+# make cache folder (if missing) and take ownership
+sudo mkdir -p /usr/local/n
+sudo chown -R $(whoami) /usr/local/n
+# make sure the required folders exist (safe to execute even if they already exist)
+sudo mkdir -p /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
+# take ownership of Node.js install destination folders
+sudo chown -R $(whoami) /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
 
-# Docker #FIX-ME
-CURRENT_USER=$USER
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
-sudo usermod -aG docker $CURRENT_USER
+# install LTS version of NodeJs 
+curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o n
+bash n lts
+
+
+# Docker #Method 1
+aptInstall docker.io
+sudo usermod -aG docker $USER
+newgrp docker 
+
+
+# Docker #Method 2
+# CURRENT_USER=$USER
+# curl -fsSL https://get.docker.com -o get-docker.sh
+# sudo sh get-docker.sh
+# sudo usermod -aG docker $CURRENT_USER
 
 # mongodb
 # wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
@@ -129,7 +146,7 @@ wget -c -nc https://github.com/TylerBrock/saw/releases/download/v0.2.2/saw_0.2.2
 # wget -c -nc https://download.studio3t.com/studio-3t/linux/2020.5.0/studio-3t-linux-x64.tar.gz && tar -xvzf studio-3t-linux-x64.tar.gz && sh ./studio-3t-linux-x64.sh
 
 # npm
-sudo npm i -g n
+sudo npm i -g npm@latest
 sudo npm i -g nodemon
 sudo npm i -g @angular/cli
 # sudo npm i -g serverless@1.52.0

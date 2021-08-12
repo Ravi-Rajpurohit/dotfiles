@@ -1,0 +1,14 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Ravi
+	email = ravi.rajpurohit385@gmail.com
+[merge]
+  tool = vscode
+[mergetool]
+  keepBackup = false
+[mergetool "vscode"]
+  cmd = code --wait --new-window $MERGED
+[diff]
+  tool = vscode
+[difftool "vscode"]
+  cmd = code --wait --diff $LOCAL $REMOTE

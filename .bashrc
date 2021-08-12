@@ -125,4 +125,4 @@ alias sophos-1='sh ~/scripts/sophos-1.sh'
 
 alias dotfiles='/usr/bin/git --git-dir=/home/jarvis/.dotfiles/ --work-tree=/home/jarvis'
 
-export PATH="$PATH:$(yarn global bin):/home/username/.deno/bin"
+export PATH="$PATH:$(yarn global bin)"

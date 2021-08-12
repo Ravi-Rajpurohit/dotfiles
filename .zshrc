@@ -37,10 +37,7 @@ if ! zgen saved; then
 
 fi
 
-alias sophos='sh ~/scripts/sophos.sh'
-alias sophos-1='sh ~/scripts/sophos-1.sh'
-
 alias dotfiles='/usr/bin/git --git-dir=/home/jarvis/.dotfiles/ --work-tree=/home/jarvis'
 
-export PATH="$PATH:$(yarn global bin):/home/jarvis/.local/bin:/home/username/.deno/bin"
+export PATH="$PATH:$(yarn global bin):/home/jarvis/.local/bin"
 export LD_LIBRARY_PATH=/usr/local/lib
