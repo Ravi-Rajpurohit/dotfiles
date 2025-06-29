@@ -1,6 +1,6 @@
 # This is Git's per-user configuration file.
 [user]
-	name = Ravi
+	name = ravi-rajpurohit
 	email = ravi.rajpurohit385@gmail.com
 [merge]
   tool = vscode
@@ -12,3 +12,9 @@
   tool = vscode
 [difftool "vscode"]
   cmd = code --wait --diff $LOCAL $REMOTE
+[push]
+	autoSetupRemote = true
+[help]
+	autocorrect = 20
+[credential]
+	helper = osxkeychain

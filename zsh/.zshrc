@@ -37,7 +37,17 @@ if ! zgen saved; then
 
 fi
 
-alias dotfiles='/usr/bin/git --git-dir=/home/jarvis/.dotfiles/ --work-tree=/home/jarvis'
+export LANG=en_US.UTF-8
 
-export PATH="$PATH:$(yarn global bin):/home/jarvis/.local/bin"
-export LD_LIBRARY_PATH=/usr/local/lib
+. "$HOME/.deno/env"
+
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+
+. "$HOME/.local/bin/env"

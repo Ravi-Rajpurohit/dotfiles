@@ -1,0 +1,19 @@
+# .stowignore - Patterns for Stow to ignore when creating symlinks
+
+# Version control files and directories
+.git
+.gitignore
+.gitmodules
+
+# Backup directories and files
+backup-*
+
+# Documentation and scripts not meant for symlinking
+README.md
+setup-dotfiles.sh
+ubuntu-install.sh
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
+new-system-checklist.md

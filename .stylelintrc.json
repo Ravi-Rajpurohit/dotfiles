@@ -1,7 +1,0 @@
-{
-	"extends": "/usr/lib/node_modules/stylelint-config-standard",
-	"plugins": ["/usr/lib/node_modules/stylelint-prettier"],
-	"rules": {
-		"prettier/prettier": true
-	}
-}

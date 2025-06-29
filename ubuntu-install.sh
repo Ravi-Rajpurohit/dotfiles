@@ -97,7 +97,7 @@ hyper &
 aptInstall vim
 aptInstall gdebi-core
 aptInstall gnome-tweaks
-aptInstall redis-server
+# aptInstall redis-server
 
 #fonts
 aptInstall fonts-firacode
@@ -148,12 +148,12 @@ wget -c -nc https://github.com/TylerBrock/saw/releases/download/v0.2.2/saw_0.2.2
 # npm
 sudo npm i -g npm@latest
 sudo npm i -g nodemon
-sudo npm i -g @angular/cli
+# sudo npm i -g @angular/cli
 # sudo npm i -g serverless@1.52.0
-sudo npm i -g @nrwl/cli
-sudo npm i -g eslint
+# sudo npm i -g @nrwl/cli
+# sudo npm i -g eslint
 # sudo npm i -g pm2
 # sudo npm i -g stylelint
 # sudo npm i -g stylelint-config-standard
 # sudo npm i -g stylelint-prettier
-sudo npm i -g prettier
+# sudo npm i -g prettier
