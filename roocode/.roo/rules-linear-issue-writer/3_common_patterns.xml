@@ -1,0 +1,17 @@
+<common_patterns>
+  <pattern name="feature_ticket_structure">
+    <template><![CDATA[
+# [Feature Name]
+
+**Description:**
+
+[A clear and concise description of what the feature does.]
+
+**Key Files:**
+
+- `[path/to/file1.ts]`
+- `[path/to/file2.tsx]`
+- `[path/to/another/file.ts]`
+    ]]></template>
+  </pattern>
+</common_patterns>

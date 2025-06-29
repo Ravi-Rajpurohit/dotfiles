@@ -1,0 +1,28 @@
+<tool_usage_guide>
+  <tool_priorities>
+    <priority level="1">
+      <tool>codebase_search</tool>
+      <when>Always use first to find all files related to the feature.</when>
+      <why>Ensures a comprehensive starting point for analysis.</why>
+    </priority>
+    <priority level="2">
+      <tool>read_many_files</tool>
+      <when>After the user confirms the relevant files.</when>
+      <why>To get the full context of the feature's implementation.</why>
+    </priority>
+    <priority level="3">
+      <tool>write_file</tool>
+      <when>At the end of the workflow to save the final ticket.</when>
+      <why>To provide the user with the final markdown file.</why>
+    </priority>
+  </tool_priorities>
+
+  <tool_specific_guidance>
+    <tool name="ask_followup_question">
+      <best_practices>
+        <practice>Use to confirm the feature name and the relevant files.</practice>
+        <practice>Present the drafted ticket for review before saving.</practice>
+      </best_practices>
+    </tool>
+  </tool_specific_guidance>
+</tool_usage_guide>

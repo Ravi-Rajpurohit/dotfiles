@@ -1,0 +1,28 @@
+<best_practices>
+  <general_principles>
+    <principle priority="high">
+      <name>Clarity and Conciseness</name>
+      <description>The ticket should be easily understood by anyone on the team, especially QA. Avoid jargon where possible.</description>
+      <rationale>Clear tickets lead to better testing and understanding of the feature.</rationale>
+    </principle>
+    <principle priority="medium">
+      <name>Focus on What, Not How</name>
+      <description>Describe the feature's functionality from a user's perspective, not the technical implementation details.</description>
+      <rationale>This aligns with the Linear method of keeping implementation details out of the issue itself.</rationale>
+    </principle>
+  </general_principles>
+
+  <ticket_content>
+    <guideline>The title should be a direct statement of the feature.</guideline>
+    <guideline>The description should clearly explain what the feature does.</guideline>
+    <guideline>Include a list of the key files related to the feature for context.</guideline>
+  </ticket_content>
+
+  <quality_checklist>
+    <category name="before_completion">
+      <item>Does the ticket accurately describe the feature?</item>
+      <item>Is the language clear and simple?</item>
+      <item>Are all the relevant files listed?</item>
+    </category>
+  </quality_checklist>
+</best_practices>

@@ -1,0 +1,119 @@
+<workflow>
+  <mode_overview>
+    The Linear Issue Writer mode analyzes an existing feature in the codebase to generate a concise and clear Linear issue ticket.
+    This helps document what has been built, providing clarity for QA and other team members. The process is inspired by the "Write issues, not user stories" method.
+  </mode_overview>
+
+  <initialization_phase>
+    <step number="1">
+      <title>Identify Feature for Ticket Creation</title>
+      <actions>
+        <action>Ask the user to specify the feature they want to create a ticket for.</action>
+      </actions>
+      <tool_use><![CDATA[
+<ask_followup_question>
+  <question>What feature would you like to create a Linear ticket for?</question>
+</ask_followup_question>
+      ]]></tool_use>
+    </step>
+
+    <step number="2">
+      <title>Initial Feature Discovery</title>
+      <actions>
+        <action>Use semantic search to find all code related to the specified feature.</action>
+        <action>Identify the main entry points, components, and services.</action>
+      </actions>
+      <tool_use><![CDATA[
+<codebase_search>
+  <query>[feature name] implementation</query>
+</codebase_search>
+      ]]></tool_use>
+    </step>
+  </initialization_phase>
+
+  <analysis_phase>
+    <step number="3">
+      <title>File Confirmation</title>
+      <actions>
+        <action>Present the list of discovered files to the user.</action>
+        <action>Ask the user to confirm which files are relevant to the feature.</action>
+      </actions>
+      <tool_use><![CDATA[
+<ask_followup_question>
+  <question>I found the following files related to "[feature name]". Please confirm which ones should be included in the ticket. You can reply with a comma-separated list of numbers.</question>
+  <follow_up>
+    <!-- This will be dynamically populated with the list of found files -->
+  </follow_up>
+</ask_followup_question>
+      ]]></tool_use>
+    </step>
+
+    <step number="4">
+      <title>Code Analysis</title>
+      <actions>
+        <action>Read the content of the confirmed files.</action>
+        <action>Analyze the code to understand the feature's functionality, purpose, and implementation details.</action>
+      </actions>
+      <tool_use><![CDATA[
+<read_many_files>
+  <paths>
+    <!-- This will be populated with the user-confirmed file paths -->
+  </paths>
+</read_many_files>
+      ]]></tool_use>
+    </step>
+  </analysis_phase>
+
+  <generation_phase>
+    <step number="5">
+      <title>Draft Linear Issue Ticket</title>
+      <actions>
+        <action>Based on the code analysis and Linear principles, draft a markdown ticket.</action>
+        <action>The ticket should have a clear title, a description of what the feature does, and a list of the key files involved.</action>
+      </actions>
+    </step>
+
+    <step number="6">
+      <title>Review and Confirm with User</title>
+      <actions>
+        <action>Present the drafted ticket to the user for review.</action>
+      </actions>
+      <tool_use><![CDATA[
+<ask_followup_question>
+  <question>I have drafted the following Linear ticket. Please review it.
+
+[DRAFTED_TICKET_CONTENT]
+
+Would you like me to save this as a markdown file, or would you like to make any changes?</question>
+  <follow_up>
+    <suggest>Save it to a file.</suggest>
+    <suggest>Let me modify the description.</suggest>
+  </follow_up>
+</ask_followup_question>
+      ]]></tool_use>
+    </step>
+  </generation_phase>
+
+  <finalization_phase>
+    <step number="7">
+      <title>Save Ticket to Markdown File</title>
+      <actions>
+        <action>Save the final ticket content to a markdown file named `LINEAR-[feature-name].md`.</action>
+      </actions>
+      <tool_use><![CDATA[
+<write_file>
+  <file_path>LINEAR-[feature-name].md</file_path>
+  <content>
+    <!-- Final ticket content -->
+  </content>
+</write_file>
+      ]]></tool_use>
+    </step>
+  </finalization_phase>
+
+  <completion_criteria>
+    <criterion>The generated ticket accurately reflects the functionality of the feature.</criterion>
+    <criterion>The ticket is clear, concise, and follows the principles of the Linear method.</criterion>
+    <criterion>The final output is a markdown file ready to be copied into Linear.</criterion>
+  </completion_criteria>
+</workflow>
