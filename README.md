@@ -47,6 +47,55 @@ Before setting up with Stow, ensure you back up any existing dotfiles in your ho
 
 For reference, the previous method used a bare Git repository. The setup script for that approach can be found in the repository history or backups, but it is no longer the recommended method for managing these dotfiles.
 
+## Managing Dotfiles with Stow
+
+This section provides guidance on how to add, remove, or update dotfiles in this repository using Stow.
+
+### Adding a New Dotfile
+1. **Create the File Structure**: Place the new dotfile in the appropriate subdirectory within `~/dotfiles`. If the tool or category doesn't exist, create a new subdirectory (e.g., `~/dotfiles/newtool/.newconfig`).
+2. **Use Stow to Symlink**: Run Stow for the specific subdirectory to create the symlink in your home directory or appropriate location.
+   ```bash
+   cd ~/dotfiles
+   stow newtool
+   ```
+3. **Verify Symlink**: Check that the symlink was created correctly.
+   ```bash
+   ls -la ~/.newconfig
+   ```
+4. **Commit Changes**: Add and commit the new file to the repository.
+   ```bash
+   git add newtool/.newconfig
+   git commit -m "Add new dotfile for newtool"
+   ```
+
+### Updating an Existing Dotfile
+1. **Edit the File**: Modify the dotfile directly in `~/dotfiles` (e.g., `~/dotfiles/bash/.bashrc`).
+2. **Automatic Update**: Since Stow maintains symlinks, changes to the file in `~/dotfiles` are automatically reflected in the symlinked location (e.g., `~/.bashrc`). No additional Stow command is needed for updates. Optionally, you can restow to ensure consistency or prune obsolete symlinks.
+   ```bash
+   cd ~/dotfiles
+   stow -R bash
+   ```
+3. **Commit Changes**: Commit the updated file to the repository.
+   ```bash
+   git add bash/.bashrc
+   git commit -m "Update bash configuration"
+   ```
+
+### Removing a Dotfile
+1. **Delete the File**: Remove the dotfile from `~/dotfiles` (e.g., `~/dotfiles/bash/.bashrc`).
+2. **Remove Symlink with Stow**: Use Stow to remove the symlink from your home directory by restowing the directory with the `--delete` option or by manually deleting the symlink.
+   ```bash
+   cd ~/dotfiles
+   stow -D bash
+   # Or manually delete the symlink
+   rm ~/.bashrc
+   ```
+3. **Commit Changes**: Commit the removal to the repository.
+   ```bash
+   git rm bash/.bashrc
+   git commit -m "Remove bash configuration from dotfiles"
+   ```
+
 ## Additional Notes
 
 - Ensure there are no conflicting files in your home directory before running Stow to avoid symlink errors.
