@@ -31,9 +31,10 @@ To set up these dotfiles on your system using Stow, follow these steps:
    stow bash
    stow zsh
    stow git
-   stow roocode
+   stow roocode  # Includes custom modes for Roo-Code
    stow cline
    stow ghostty
+   stow gemini   # Includes settings and global context for Gemini CLI
    ```
    Alternatively, if you want to symlink all configurations at once, you can use a script or manually run `stow` for each relevant directory.
 

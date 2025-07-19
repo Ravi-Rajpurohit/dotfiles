@@ -51,3 +51,9 @@ esac
 
 
 . "$HOME/.local/bin/env"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/ravi/.lmstudio/bin"
+# End of LM Studio CLI section
+
+export COMPOSE_BAKE=true
