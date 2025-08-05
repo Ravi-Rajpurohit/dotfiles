@@ -4,9 +4,24 @@
 
 - Always use -f when installing npm packages
 
-### React
+### React Key Generation
 
-- use nanoid() for key generation
+- Keys must be unique among siblings and stable across renders
+- Never generate keys during render (e.g. Math.random(), nanoid())
+  - Bad: `<li key={Math.random()}>` 
+  - Bad: `<li key={nanoid()}>` 
+- Preferred sources:
+  - Database IDs for persisted data
+    - Good: `<li key={user.id}>` 
+  - Pre-generated IDs (crypto.randomUUID() or nanoid()) created once and stored
+    - Good: `const id = crypto.randomUUID(); items.push({id, name})`
+    - Good: `<li key={item.id}>`
+- Use array indexes only when:
+  - List order/length is static
+  - No IDs available AND list won't reorder
+    - OK: `{['Home', 'About', 'Contact'].map((page, i) => <li key={i}>)}`
+- For dynamic lists without IDs, generate and store IDs when data is created, not during render
+  - Good: `const addItem = (name) => setItems([...items, {id: nanoid(), name}])`
 
 ### ShadCN
 

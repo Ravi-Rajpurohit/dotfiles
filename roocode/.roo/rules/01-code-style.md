@@ -7,22 +7,15 @@
 - Structure files: exported component, subcomponents, helpers, static content, types.
 - When adding or updating code, add imports simultaneously with or after the code they reference. Keep imports at the top of the file grouped with other imports to prevent format-on-save from removing them prematurely.
 
-## Project Structure
-- Organize feature-related code in dedicated feature folders using this structure:
-  ```
-  features/
-    feature-name/
-      components/      # Only if multiple components exist
-      hooks/           # Only if multiple hooks exist
-      types/           # Only if multiple types exist
-      utils/           # Only if multiple utilities exist
-      services/        # Only if multiple services exist
-  ```
+## Monorepo Management
+
+- Follow best practices using Turbo for monorepo setups.
+- Ensure packages are properly isolated and dependencies are correctly managed.
+- Use shared configurations and scripts where appropriate.
+- Utilize the workspace structure as defined in the root `package.json`.
 - Keep all feature implementation details co-located
-- Feature folders should be self-contained with minimal external dependencies
-- Use kebab-case for feature folder names (e.g. `navigator`)
+- Use kebab-case for feature folder names (e.g. `navigator-calls`)
 - Export directly from files using `export const` or `export {}` syntax
-- Only create subfolders when multiple files of that type exist
 
 ## Naming Conventions
 

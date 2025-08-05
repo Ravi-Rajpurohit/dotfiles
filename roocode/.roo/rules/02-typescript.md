@@ -1,7 +1,7 @@
 ## TypeScript Usage
 
 - Use TypeScript for all code; prefer types over interfaces.
-- Avoid enums; use maps instead.
+- Avoid enums; use JavaScript objects or TypeScript unions instead.
 - Use functional components with TypeScript types.
 
 ### Type Inference
