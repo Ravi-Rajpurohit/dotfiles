@@ -1,11 +1,20 @@
-## Code Style and Structure
+# Code Style and Structure
 
 - Write concise, technical TypeScript code with accurate examples.
 - Use functional and declarative programming patterns; avoid classes.
 - Prefer iteration and modularization over code duplication.
 - Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError).
 - Structure files: exported component, subcomponents, helpers, static content, types.
+- Always import files on top of the file
 - When adding or updating code, add imports simultaneously with or after the code they reference. Keep imports at the top of the file grouped with other imports to prevent format-on-save from removing them prematurely.
+
+## Code Comments
+
+- Only add comments for complex logic or non-obvious behavior
+- Comments should explain WHY, not WHAT
+- Avoid obvious comments that restate the code
+- Focus on business logic decisions, edge cases, or performance optimizations
+- When editing files, remove unnecessary comments
 
 ## Monorepo Management
 
