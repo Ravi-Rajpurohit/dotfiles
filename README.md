@@ -1,3 +1,4 @@
+
 # dotfiles
 
 Dotfiles for personal use, now managed with Stow.
@@ -5,6 +6,65 @@ Dotfiles for personal use, now managed with Stow.
 ## Overview
 
 This repository contains my personal dotfiles, which are configuration files for various tools and shells. Previously, these were managed using a bare Git repository method, but they have been transitioned to use [GNU Stow](https://www.gnu.org/software/stow/), a symlink farm manager, for easier management and organization.
+
+### How Stow Works (Simplified)
+
+Stow is a symlink manager. It doesn't copy files; it creates links from your `~/dotfiles` repository into your home directory (or another target).
+
+1.  **Where does Stow put symlinks?**
+    *   By default, Stow looks at the parent folder of your repository. If your dotfiles live in `~/dotfiles`, then symlinks go into `~` (your home directory).
+    *   Example:
+        ```
+        ~/dotfiles/zsh/.zshrc   →   ~/.zshrc
+        ```
+    *   You can change the target with the `-t` option:
+        ```bash
+        stow -t ~/.config yabai
+        ```
+        This links files under `yabai/` into `~/.config`.
+
+2.  **How does the linking happen?**
+    *   Inside each subfolder (called a package), Stow finds files and mirrors their relative path into the target.
+    *   Example repository structure:
+        ```
+        ~/dotfiles/yabai/.config/yabai/yabairc
+        ```
+    *   Running:
+        ```bash
+        stow yabai
+        ```
+        creates:
+        ```
+        ~/.config/yabai/yabairc → ~/dotfiles/yabai/.config/yabai/yabairc
+        ```
+
+3.  **How to add a new dotfile**
+    1.  **Put the file into a package folder inside `~/dotfiles`**: If no package exists yet, create one. For example, to add `.vimrc`:
+        ```bash
+        mkdir -p ~/dotfiles/vim
+        mv ~/.vimrc ~/dotfiles/vim/.vimrc
+        ```
+    2.  **Run Stow to symlink it**:
+        ```bash
+        cd ~/dotfiles
+        stow vim
+        ```
+    3.  **Verify**:
+        ```bash
+        ls -la ~/.vimrc
+        # should show → ~/dotfiles/vim/.vimrc
+        ```
+    4.  **Commit it to Git**:
+        ```bash
+        git add vim/.vimrc
+        git commit -m "Add vim configuration"
+        ```
+
+4.  **Quick lifecycle**
+    *   **Add**: Move file into `~/dotfiles/package/`, run `stow package`.
+    *   **Update**: Edit file in `~/dotfiles`, changes appear instantly via symlink.
+    *   **Remove**: Run `stow -D package` or delete symlink, then commit.
+
 
 ## Setup with Stow
 
@@ -31,10 +91,12 @@ To set up these dotfiles on your system using Stow, follow these steps:
    stow bash
    stow zsh
    stow git
-   stow roocode  # Includes custom modes for Roo-Code
+   stow roocode
    stow cline
    stow ghostty
-   stow gemini   # Includes settings and global context for Gemini CLI
+   stow gemini
+   stow yabai
+   stow skhd
    ```
    Alternatively, if you want to symlink all configurations at once, you can use a script or manually run `stow` for each relevant directory.
 
@@ -101,5 +163,18 @@ This section provides guidance on how to add, remove, or update dotfiles in this
 
 - Ensure there are no conflicting files in your home directory before running Stow to avoid symlink errors.
 - If you need to update or modify dotfiles, edit the files in `~/dotfiles` and commit the changes to this repository.
+
+### Brewfile
+
+This repository includes a `Brewfile` to manage installations of Homebrew packages, taps, and casks. You can install all listed dependencies using the command:
+```bash
+brew bundle
+```
+This `Brewfile` can be generated or updated using:
+```bash
+brew bundle dump --describe --no-vscode .
+```
+Note: The `--no-vscode` flag is used to exclude VSCode extensions from being listed in the `Brewfile`.
+
 
 For more information on Stow, refer to the [official documentation](https://www.gnu.org/software/stow/manual/stow.html) and this [tutorial video](https://www.youtube.com/watch?v=NoFiYOqnC4o) for a visual guide on managing dotfiles with Stow.

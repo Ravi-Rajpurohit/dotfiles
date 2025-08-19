@@ -47,7 +47,7 @@ done
 # Navigate to dotfiles directory and run Stow to create symlinks
 cd "$HOME/dotfiles"
 echo "Creating symlinks with Stow for dotfiles..."
-stow bash zsh git roocode cline ghostty
+stow bash zsh git roocode cline ghostty yabai skhd
 if [ $? -eq 0 ]; then
   echo "Symlinks created successfully with Stow."
 else
