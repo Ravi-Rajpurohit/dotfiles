@@ -50,7 +50,7 @@ automatically-unhide-macos-hidden-apps = false
 # Possible values: (qwerty|dvorak|colemak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
 [key-mapping]
-    preset = 'qwerty'
+preset = 'qwerty'
 
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
@@ -62,12 +62,12 @@ automatically-unhide-macos-hidden-apps = false
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-    inner.horizontal = 0
-    inner.vertical =   0
-    outer.left =       0
-    outer.bottom =     0
-    outer.top =        0
-    outer.right =      0
+inner.horizontal = 0
+inner.vertical =   0
+outer.left =       0
+outer.bottom =     0
+outer.top =        0
+outer.right =      0
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -107,103 +107,78 @@ alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-alt-h = 'focus left'
-alt-j = 'focus down'
-alt-k = 'focus up'
-alt-l = 'focus right'
+ctrl-alt-cmd-left = 'focus left'
+ctrl-alt-cmd-down = 'focus down'
+ctrl-alt-cmd-up = 'focus up'
+ctrl-alt-cmd-right = 'focus right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-alt-shift-h = 'move left'
-alt-shift-j = 'move down'
-alt-shift-k = 'move up'
-alt-shift-l = 'move right'
-
-# See: https://nikitabobko.github.io/AeroSpace/commands#resize
-ctrl-alt-cmd-minus = 'resize smart -50'
-ctrl-alt-cmd-equal = 'resize smart +50'
+ctrl-alt-cmd-shift-left = 'move left'
+ctrl-alt-cmd-shift-down = 'move down'
+ctrl-alt-cmd-shift-up = 'move up'
+ctrl-alt-cmd-shift-right = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 ctrl-alt-cmd-1 = 'workspace 1'
 ctrl-alt-cmd-2 = 'workspace 2'
-ctrl-alt-cmd-3 = 'workspace 3'
-ctrl-alt-cmd-4 = 'workspace 4'
+# ctrl-alt-cmd-3 = 'workspace 3'
+# ctrl-alt-cmd-4 = 'workspace 4'
 # ctrl-alt-cmd-5 = 'workspace 5'
 # ctrl-alt-cmd-6 = 'workspace 6'
 # ctrl-alt-cmd-7 = 'workspace 7'
 # ctrl-alt-cmd-8 = 'workspace 8'
 ctrl-alt-cmd-9 = 'workspace 9'
-# ctrl-alt-cmd-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
-# ctrl-alt-cmd-b = 'workspace B'
-# ctrl-alt-cmd-c = 'workspace C'
-# ctrl-alt-cmd-d = 'workspace D'
-# ctrl-alt-cmd-e = 'workspace E'
-# ctrl-alt-cmd-f = 'workspace F'
-# ctrl-alt-cmd-g = 'workspace G'
-# ctrl-alt-cmd-i = 'workspace I'
-# ctrl-alt-cmd-m = 'workspace M'
-# ctrl-alt-cmd-n = 'workspace N'
-# ctrl-alt-cmd-o = 'workspace O'
-# ctrl-alt-cmd-p = 'workspace P'
-# ctrl-alt-cmd-q = 'workspace Q'
-# ctrl-alt-cmd-r = 'workspace R'
-# ctrl-alt-cmd-s = 'workspace S'
-# ctrl-alt-cmd-t = 'workspace T'
-# ctrl-alt-cmd-u = 'workspace U'
-# ctrl-alt-cmd-v = 'workspace V'
-# ctrl-alt-cmd-w = 'workspace W'
-# ctrl-alt-cmd-x = 'workspace X'
-# ctrl-alt-cmd-y = 'workspace Y'
-# ctrl-alt-cmd-z = 'workspace Z'
+
+# --- App/launcher shortcuts ---
+ctrl-alt-cmd-a = 'exec-and-forget open -b com.openai.chat'
+ctrl-alt-cmd-b = 'exec-and-forget open -b com.google.Chrome'
+ctrl-alt-cmd-shift-c = 'exec-and-forget open -b com.apple.iCal'
+ctrl-alt-cmd-c = 'exec-and-forget open -b com.google.Chrome.app.kjbdgfilnfhdoflbpgamdcdgpehopbep'
+ctrl-alt-cmd-e = 'exec-and-forget open -b com.apple.finder'
+ctrl-alt-cmd-f = 'exec-and-forget open -b com.figma.Desktop'
+ctrl-alt-cmd-g = 'exec-and-forget open -b com.google.Chrome.app.mjoklplbddabcmpepnokjaffbmgbkkgg'
+ctrl-alt-cmd-l = 'exec-and-forget open -b com.linear'
+ctrl-alt-cmd-m = 'exec-and-forget open -b com.apple.mail'
+ctrl-alt-cmd-d = 'exec-and-forget open -b com.mongodb.compass'
+ctrl-alt-cmd-o = 'exec-and-forget open "obsidian://open?vault=Work"'
+ctrl-alt-cmd-shift-o = 'exec-and-forget open "obsidian://open?vault=Personal"'
+ctrl-alt-cmd-q = 'exec-and-forget open -b com.apple.QuickTimePlayerX'
+ctrl-alt-cmd-r = 'exec-and-forget open -b com.pvncher.repoprompt'
+ctrl-alt-cmd-s = 'exec-and-forget open -b com.tinyspeck.slackmacgap'
+ctrl-alt-cmd-t = 'exec-and-forget open -b com.googlecode.iterm2'
+ctrl-alt-cmd-v = 'exec-and-forget open -b com.microsoft.VSCode'
+ctrl-alt-cmd-shift-v = 'exec-and-forget open -b com.microsoft.VSCodeInsiders'
+ctrl-alt-cmd-y = 'exec-and-forget open -b com.brave.Browser.app.cinhimbnkkaeohfgghhklpknlkffjgod'
+ctrl-alt-cmd-z = 'exec-and-forget open -b app.zen-browser.zen'
+
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-ctrl-alt-cmd-shift-1 = 'move-node-to-workspace 1'
-ctrl-alt-cmd-shift-2 = 'move-node-to-workspace 2'
-ctrl-alt-cmd-shift-3 = 'move-node-to-workspace 3'
-ctrl-alt-cmd-shift-4 = 'move-node-to-workspace 4'
+ctrl-alt-cmd-shift-1 = ['move-node-to-workspace 1','workspace 1','fullscreen']
+ctrl-alt-cmd-shift-2 = ['move-node-to-workspace 2','workspace 2','fullscreen']
+# ctrl-alt-cmd-shift-3 = 'move-node-to-workspace 3'
+# ctrl-alt-cmd-shift-4 = 'move-node-to-workspace 4'
 # ctrl-alt-cmd-shift-5 = 'move-node-to-workspace 5'
 # ctrl-alt-cmd-shift-6 = 'move-node-to-workspace 6'
 # ctrl-alt-cmd-shift-7 = 'move-node-to-workspace 7'
 # ctrl-alt-cmd-shift-8 = 'move-node-to-workspace 8'
-ctrl-alt-cmd-shift-9 = 'move-node-to-workspace 9'
+ctrl-alt-cmd-shift-9 = ['move-node-to-workspace 9','workspace 9','fullscreen']
 # alt-shift-a = 'move-node-to-workspace A'
-# alt-shift-b = 'move-node-to-workspace B'
-# alt-shift-c = 'move-node-to-workspace C'
-# alt-shift-d = 'move-node-to-workspace D'
-# alt-shift-e = 'move-node-to-workspace E'
-# alt-shift-f = 'move-node-to-workspace F'
-# alt-shift-g = 'move-node-to-workspace G'
-# alt-shift-i = 'move-node-to-workspace I'
-# alt-shift-m = 'move-node-to-workspace M'
-# alt-shift-n = 'move-node-to-workspace N'
-# alt-shift-o = 'move-node-to-workspace O'
-# alt-shift-p = 'move-node-to-workspace P'
-# alt-shift-q = 'move-node-to-workspace Q'
-# alt-shift-r = 'move-node-to-workspace R'
-# alt-shift-s = 'move-node-to-workspace S'
-# alt-shift-t = 'move-node-to-workspace T'
-# alt-shift-u = 'move-node-to-workspace U'
-# alt-shift-v = 'move-node-to-workspace V'
-# alt-shift-w = 'move-node-to-workspace W'
-# alt-shift-x = 'move-node-to-workspace X'
-# alt-shift-y = 'move-node-to-workspace Y'
-# alt-shift-z = 'move-node-to-workspace Z'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
-
-
-
+# open aerospace config in vscode
+cmd-ctrl-alt-comma = "exec-and-forget code --new-window ~/dotfiles ~/.aerospace.toml"
 
 # Custom
-ctrl-alt-cmd-f  = 'fullscreen'
+ctrl-alt-cmd-f11  = 'macos-native-fullscreen'
 
-
-
-
-
+# IMPORTANT
+# Fix Mission Control Window Sizes
+# Windows show up really small in Mission Control because of how Aerospace hides windows of non active workspaces.
+# A workaround for this is to go to System Settings -> Desktop & Dock -> Mission Control and then turn on “Group Windows By Application”.
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 ctrl-alt-cmd-semicolon = 'mode service'
@@ -212,9 +187,16 @@ ctrl-alt-cmd-semicolon = 'mode service'
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
-r = ['flatten-workspace-tree', 'mode main'] # reset layout
-f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
-backspace = ['close-all-windows-but-current', 'mode main']    
+
+f = ['fullscreen', 'mode main']
+# shift-f = ['macos-native-fullscreen', 'mode main']
+
+r = ['mode resize']
+shift-r = ['flatten-workspace-tree', 'mode main'] # reset layout
+
+t = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+
+backspace = ['close-all-windows-but-current', 'mode main']
 
 # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
     #s = ['layout sticky tiling', 'mode main']
@@ -224,10 +206,163 @@ alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
-down = 'volume down'
-up = 'volume up'
-shift-down = ['volume set 0', 'mode main']
+# down = 'volume down'
+# up = 'volume up'
+# shift-down = ['volume set 0', 'mode main']
+
+# FIXME:f - fix the resize from all size.. cant resize from right to left
+[mode.resize.binding]
+# --- WIDTH ---
+left  = '''exec-and-forget osascript -e '
+tell application "System Events"
+  set frontApp to name of first application process whose frontmost is true
+  tell application process frontApp
+    if (count of windows) > 0 then
+      set winSize to size of front window
+      set item 1 of winSize to (item 1 of winSize) - 50
+      set size of front window to winSize
+    end if
+  end tell
+end tell' '''
+
+right = '''exec-and-forget osascript -e '
+tell application "System Events"
+  set frontApp to name of first application process whose frontmost is true
+  tell application process frontApp
+    if (count of windows) > 0 then
+      set winSize to size of front window
+      set item 1 of winSize to (item 1 of winSize) + 50
+      set size of front window to winSize
+    end if
+  end tell
+end tell' '''
+
+down = '''exec-and-forget osascript -e '
+tell application "System Events"
+  set frontApp to name of first application process whose frontmost is true
+  tell application process frontApp
+    if (count of windows) > 0 then
+      set winSize to size of front window
+      set item 2 of winSize to (item 2 of winSize) + 50
+      set size of front window to winSize
+    end if
+  end tell
+end tell' '''
+
+up = '''exec-and-forget osascript -e '
+tell application "System Events"
+  set frontApp to name of first application process whose frontmost is true
+  tell application process frontApp
+    if (count of windows) > 0 then
+      set winSize to size of front window
+      set item 2 of winSize to (item 2 of winSize) - 50
+      set size of front window to winSize
+    end if
+  end tell
+end tell' '''
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#resize
+minus = 'resize smart -50'
+equal = 'resize smart +50'
+
+esc = 'mode main' # Keys to exit the mode
+enter = 'mode main' # Keys to exit the mode
+
+# ────────────────
+# Workspace to monitor assignments
+# ────────────────
+[workspace-to-monitor-force-assignment]
+1 = 'main'     # Main is the MacBook screen, Secondary is the external monitor
+2 = 'secondary'
+3 = 'main'
+4 = 'secondary'
+5 = 'main'
+6 = 'secondary'
+7 = 'main'
+8 = 'secondary'
+9 = 'main'     # MacBook screen → workspace 9 -> Personal Stuff
 
 
+# --- SPECIFIC APP RULES FIRST ---
+# Work-related workspaces (1-6)
+
+# --- Workspace 1: Coding ---
+# [[on-window-detected]]
+# if.app-id = 'com.microsoft.VSCode'
+# run = ['layout floating','move-node-to-workspace 2']
+
+# [[on-window-detected]]
+# if.app-id = 'com.microsoft.VSCodeInsiders'
+# run = ['layout floating','move-node-to-workspace 2']
+
+# [[on-window-detected]]
+# if.app-id = 'com.googlecode.iterm2'
+# run = ['layout floating','move-node-to-workspace 2']
+
+# [[on-window-detected]]
+# if.app-id = 'com.pvncher.repoprompt'
+# run = ['layout floating','move-node-to-workspace 2']
+
+# [[on-window-detected]]
+# if.app-id = 'com.apple.QuickTimePlayerX'
+# run = ['layout floating','move-node-to-workspace 2']
+
+# # --- Workspace 2: Browsing & Data ---
+# [[on-window-detected]]
+# if.app-id = 'com.google.Chrome'
+# run = ['layout floating','move-node-to-workspace 1']
+
+# [[on-window-detected]]
+# if.app-id = 'com.mongodb.compass'
+# run = ['layout floating','move-node-to-workspace 1']
+
+# # --- Workspace 3: PM / Tasks ---
+# [[on-window-detected]]
+# if.app-id = 'com.linear'
+# run = ['layout floating','move-node-to-workspace 3']
+
+# # --- Workspace 4: Design ---
+# [[on-window-detected]]
+# if.app-id = 'com.figma.Desktop'
+# run = ['layout floating','move-node-to-workspace 4']
+
+# # --- Workspace 5: Communication ---
+# [[on-window-detected]]
+# if.app-id = 'com.tinyspeck.slackmacgap'
+# run = ['layout floating','move-node-to-workspace 5']
+
+# # --- Workspace 6: Productivity ---
+# [[on-window-detected]]
+# if.app-id = 'com.apple.iCal'
+# run = ['layout floating','move-node-to-workspace 6']
+
+# [[on-window-detected]]
+# if.app-id = 'com.apple.mail'
+# run = ['layout floating','move-node-to-workspace 6']
+
+# # --- Personal workspaces (7-9) ---
+
+# # --- Workspace 7: Notes ---
+# [[on-window-detected]]
+# if.app-id = 'md.obsidian'
+# run = ['layout floating','move-node-to-workspace 7']
+
+# # --- Workspace 8: Media ---
+# [[on-window-detected]]
+# if.app-id = 'com.brave.Browser.app.cinhimbnkkaeohfgghhklpknlkffjgod' # YouTube Music
+# run = ['layout floating','move-node-to-workspace 8']
+
+# --- Workspace 9: Personal Browsing ---
+[[on-window-detected]]
+if.app-id = 'app.zen-browser.zen'
+run = ['layout floating','move-node-to-workspace 9']
 
 
+# --- GLOBAL CATCH-ALL RULE LAST ---
+# This rule matches all new windows. Because it runs after the specific rules above,
+# it will correctly apply fullscreen to apps that have already been moved.
+[[on-window-detected]]
+run = ['layout floating']
+
+
+#TODO: automatically-unhide-macos-hidden-apps = true

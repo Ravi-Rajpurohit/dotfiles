@@ -4,8 +4,13 @@
   "mcpServers": {
     "context7": {
       "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp"]
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ]
     }
   },
-  "preferredEditor": "vscode"
+  "preferredEditor": "vscode",
+  "hasSeenIdeIntegrationNudge": true,
+  "ideMode": true
 }
