@@ -1,15 +1,15 @@
 #!/bin/bash
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # setup-dotfiles.sh - Script to set up dotfiles using GNU Stow
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 echo "Setting up dotfiles with Stow..."
 
 # Clone the dotfiles repository to ~/dotfiles if it doesn't exist
 if [ ! -d "$HOME/dotfiles" ]; then
   echo "Cloning dotfiles repository to ~/dotfiles..."
-  git clone https://github.com/Ravi-Rajpurohit/dotfiles.git $HOME/dotfiles
+  git clone https://github.com/Ravi-Rajpurohit/dotfiles.git "$HOME/dotfiles"
 else
   echo "Dotfiles repository already exists at ~/dotfiles."
 fi
@@ -37,7 +37,7 @@ fi
 BACKUP_DIR="$HOME/dotfiles/backup-home-$(date +%Y%m%d)"
 echo "Creating backup of existing dotfiles in $BACKUP_DIR..."
 mkdir -p "$BACKUP_DIR"
-for file in ~/.bashrc ~/.zshrc ~/.gitconfig ~/.roo ~/.cline; do
+for file in ~/.zshrc ~/.gitconfig ~/.aerospace.toml; do
   if [ -f "$file" ] || [ -L "$file" ] || [ -d "$file" ]; then
     mv "$file" "$BACKUP_DIR/"
     echo "Moved $file to $BACKUP_DIR"
@@ -45,9 +45,9 @@ for file in ~/.bashrc ~/.zshrc ~/.gitconfig ~/.roo ~/.cline; do
 done
 
 # Navigate to dotfiles directory and run Stow to create symlinks
-cd "$HOME/dotfiles"
+cd "$HOME/dotfiles" || exit 1
 echo "Creating symlinks with Stow for dotfiles..."
-stow bash zsh git roocode cline ghostty yabai skhd
+stow zsh git aerospace
 if [ $? -eq 0 ]; then
   echo "Symlinks created successfully with Stow."
 else
@@ -56,7 +56,7 @@ else
 fi
 
 echo "Dotfiles setup complete. Your configurations are now managed with Stow."
-echo "To verify, check symlinks in your home directory (e.g., 'ls -la ~/.bashrc')."
+echo "To verify, check symlinks (e.g., 'ls -la ~/.zshrc ~/.gitconfig ~/.aerospace.toml')."
 echo "If you need to update dotfiles, edit files in ~/dotfiles and commit changes to the repository."
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

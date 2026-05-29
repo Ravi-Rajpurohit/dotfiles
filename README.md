@@ -3,178 +3,130 @@
 
 Dotfiles for personal use, now managed with Stow.
 
+## Packages
+
+| Package     | Symlinks to home        |
+|-------------|-------------------------|
+| `zsh`       | `~/.zshrc`              |
+| `git`       | `~/.gitconfig`          |
+| `aerospace` | `~/.aerospace.toml`     |
+
+Install all packages:
+
+```bash
+cd ~/dotfiles
+stow zsh git aerospace
+```
+
+Or run `bash ~/dotfiles/setup-dotfiles.sh`.
+
 ## Overview
 
-This repository contains my personal dotfiles, which are configuration files for various tools and shells. Previously, these were managed using a bare Git repository method, but they have been transitioned to use [GNU Stow](https://www.gnu.org/software/stow/), a symlink farm manager, for easier management and organization.
+This repository contains personal dotfiles for shell, Git, and AeroSpace (macOS tiling WM). Configurations are managed with [GNU Stow](https://www.gnu.org/software/stow/), a symlink farm manager.
 
 ### How Stow Works (Simplified)
 
-Stow is a symlink manager. It doesn't copy files; it creates links from your `~/dotfiles` repository into your home directory (or another target).
+Stow creates symlinks from `~/dotfiles` into your home directory (default target: `~`).
 
-1.  **Where does Stow put symlinks?**
-    *   By default, Stow looks at the parent folder of your repository. If your dotfiles live in `~/dotfiles`, then symlinks go into `~` (your home directory).
-    *   Example:
-        ```
-        ~/dotfiles/zsh/.zshrc   →   ~/.zshrc
-        ```
-    *   You can change the target with the `-t` option:
-        ```bash
-        stow -t ~/.config yabai
-        ```
-        This links files under `yabai/` into `~/.config`.
+1. **Where symlinks go**
+   - Example: `~/dotfiles/zsh/.zshrc` → `~/.zshrc`
+   - Use `-t` for a different target when needed.
 
-2.  **How does the linking happen?**
-    *   Inside each subfolder (called a package), Stow finds files and mirrors their relative path into the target.
-    *   Example repository structure:
-        ```
-        ~/dotfiles/yabai/.config/yabai/yabairc
-        ```
-    *   Running:
-        ```bash
-        stow yabai
-        ```
-        creates:
-        ```
-        ~/.config/yabai/yabairc → ~/dotfiles/yabai/.config/yabai/yabairc
-        ```
+2. **How linking works**
+   - Each subdirectory is a Stow *package*. Files inside mirror their path under the target.
+   - Example:
+     ```
+     ~/dotfiles/aerospace/.aerospace.toml
+     ```
+     Running `stow aerospace` creates:
+     ```
+     ~/.aerospace.toml → ~/dotfiles/aerospace/.aerospace.toml
+     ```
 
-3.  **How to add a new dotfile**
-    1.  **Put the file into a package folder inside `~/dotfiles`**: If no package exists yet, create one. For example, to add `.vimrc`:
-        ```bash
-        mkdir -p ~/dotfiles/vim
-        mv ~/.vimrc ~/dotfiles/vim/.vimrc
-        ```
-    2.  **Run Stow to symlink it**:
-        ```bash
-        cd ~/dotfiles
-        stow vim
-        ```
-    3.  **Verify**:
-        ```bash
-        ls -la ~/.vimrc
-        # should show → ~/dotfiles/vim/.vimrc
-        ```
-    4.  **Commit it to Git**:
-        ```bash
-        git add vim/.vimrc
-        git commit -m "Add vim configuration"
-        ```
+3. **Add a new dotfile**
+   1. Create a package folder and move the file in (e.g. `~/dotfiles/vim/.vimrc`).
+   2. `cd ~/dotfiles && stow vim`
+   3. Verify with `ls -la ~/.vimrc`
+   4. Commit to Git.
 
-4.  **Quick lifecycle**
-    *   **Add**: Move file into `~/dotfiles/package/`, run `stow package`.
-    *   **Update**: Edit file in `~/dotfiles`, changes appear instantly via symlink.
-    *   **Remove**: Run `stow -D package` or delete symlink, then commit.
-
+4. **Lifecycle**
+   - **Add**: file in `~/dotfiles/<package>/`, then `stow <package>`
+   - **Update**: edit in `~/dotfiles` (symlinks pick up changes immediately)
+   - **Remove**: `stow -D <package>` or remove the symlink, then commit
 
 ## Setup with Stow
 
-To set up these dotfiles on your system using Stow, follow these steps:
-
-1. **Clone the Repository**: Clone this repository to a directory in your home folder, typically `~/dotfiles`.
+1. **Clone the repository**
    ```bash
    git clone https://github.com/Ravi-Rajpurohit/dotfiles.git ~/dotfiles
    ```
 
-2. **Install Stow**: Ensure Stow is installed on your system. On macOS, you can install it via Homebrew:
+2. **Install Stow**
    ```bash
+   # macOS
    brew install stow
+   # Linux (Debian/Ubuntu)
+   sudo apt install stow
    ```
-   On Linux, use your package manager, e.g., `sudo apt install stow` for Debian-based systems.
 
-3. **Navigate to the Dotfiles Directory**:
+3. **Symlink packages**
    ```bash
    cd ~/dotfiles
+   stow zsh git aerospace
    ```
+   Or: `bash ~/dotfiles/setup-dotfiles.sh` (backs up existing files first).
 
-4. **Use Stow to Create Symlinks**: Stow creates symlinks from the dotfiles in this repository to your home directory. Run the following command for each subdirectory corresponding to the tool or configuration you want to symlink:
+4. **Verify**
    ```bash
-   stow bash
-   stow zsh
-   stow git
-   stow roocode
-   stow cline
-   stow ghostty
-   stow gemini
-   stow yabai
-   stow skhd
+   ls -la ~/.zshrc ~/.gitconfig ~/.aerospace.toml
    ```
-   Alternatively, if you want to symlink all configurations at once, you can use a script or manually run `stow` for each relevant directory.
 
-5. **Verify Setup**: Check that the symlinks are correctly created in your home directory. For example, `ls -la ~/.bashrc` should show a symlink pointing to `~/dotfiles/bash/.bashrc`.
+See [new-system-checklist.md](new-system-checklist.md) for a full new-machine checklist.
 
 ## Backup
 
-Before setting up with Stow, ensure you back up any existing dotfiles in your home directory to avoid overwriting important configurations. A backup is typically created in `~/dotfiles/backup-[DATE]` during the transition process.
-
-## Previous Method
-
-For reference, the previous method used a bare Git repository. The setup script for that approach can be found in the repository history or backups, but it is no longer the recommended method for managing these dotfiles.
+Before first Stow run, back up any existing `~/.zshrc`, `~/.gitconfig`, or `~/.aerospace.toml`. `setup-dotfiles.sh` moves them to `~/dotfiles/backup-home-YYYYMMDD/`.
 
 ## Managing Dotfiles with Stow
 
-This section provides guidance on how to add, remove, or update dotfiles in this repository using Stow.
+### Adding a new package
+1. Add files under `~/dotfiles/<package>/` with the correct relative paths.
+2. `cd ~/dotfiles && stow <package>`
+3. Verify symlinks, then commit.
 
-### Adding a New Dotfile
-1. **Create the File Structure**: Place the new dotfile in the appropriate subdirectory within `~/dotfiles`. If the tool or category doesn't exist, create a new subdirectory (e.g., `~/dotfiles/newtool/.newconfig`).
-2. **Use Stow to Symlink**: Run Stow for the specific subdirectory to create the symlink in your home directory or appropriate location.
-   ```bash
-   cd ~/dotfiles
-   stow newtool
-   ```
-3. **Verify Symlink**: Check that the symlink was created correctly.
-   ```bash
-   ls -la ~/.newconfig
-   ```
-4. **Commit Changes**: Add and commit the new file to the repository.
-   ```bash
-   git add newtool/.newconfig
-   git commit -m "Add new dotfile for newtool"
-   ```
+### Updating
+Edit files under `~/dotfiles`. To refresh symlinks after structural changes:
+```bash
+cd ~/dotfiles
+stow -R zsh
+```
 
-### Updating an Existing Dotfile
-1. **Edit the File**: Modify the dotfile directly in `~/dotfiles` (e.g., `~/dotfiles/bash/.bashrc`).
-2. **Automatic Update**: Since Stow maintains symlinks, changes to the file in `~/dotfiles` are automatically reflected in the symlinked location (e.g., `~/.bashrc`). No additional Stow command is needed for updates. Optionally, you can restow to ensure consistency or prune obsolete symlinks.
-   ```bash
-   cd ~/dotfiles
-   stow -R bash
-   ```
-3. **Commit Changes**: Commit the updated file to the repository.
-   ```bash
-   git add bash/.bashrc
-   git commit -m "Update bash configuration"
-   ```
-
-### Removing a Dotfile
-1. **Delete the File**: Remove the dotfile from `~/dotfiles` (e.g., `~/dotfiles/bash/.bashrc`).
-2. **Remove Symlink with Stow**: Use Stow to remove the symlink from your home directory by restowing the directory with the `--delete` option or by manually deleting the symlink.
-   ```bash
-   cd ~/dotfiles
-   stow -D bash
-   # Or manually delete the symlink
-   rm ~/.bashrc
-   ```
-3. **Commit Changes**: Commit the removal to the repository.
-   ```bash
-   git rm bash/.bashrc
-   git commit -m "Remove bash configuration from dotfiles"
-   ```
+### Removing
+```bash
+cd ~/dotfiles
+stow -D zsh
+```
 
 ## Additional Notes
 
-- Ensure there are no conflicting files in your home directory before running Stow to avoid symlink errors.
-- If you need to update or modify dotfiles, edit the files in `~/dotfiles` and commit the changes to this repository.
+- Resolve conflicting real files in `$HOME` before Stow (Stow will not overwrite them).
+- Edit tracked files in `~/dotfiles` and commit changes to this repository.
 
 ### Brewfile
 
-This repository includes a `Brewfile` to manage installations of Homebrew packages, taps, and casks. You can install all listed dependencies using the command:
+Install Homebrew dependencies from this repo:
+
 ```bash
+cd ~/dotfiles
 brew bundle
 ```
-This `Brewfile` can be generated or updated using:
+
+Regenerate the Brewfile after package changes:
+
 ```bash
 brew bundle dump --describe --no-vscode .
 ```
-Note: The `--no-vscode` flag is used to exclude VSCode extensions from being listed in the `Brewfile`.
 
+The `--no-vscode` flag excludes VS Code extensions from the dump.
 
-For more information on Stow, refer to the [official documentation](https://www.gnu.org/software/stow/manual/stow.html) and this [tutorial video](https://www.youtube.com/watch?v=NoFiYOqnC4o) for a visual guide on managing dotfiles with Stow.
+For more on Stow, see the [manual](https://www.gnu.org/software/stow/manual/stow.html).

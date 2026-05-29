@@ -16,23 +16,23 @@ This checklist is designed to guide you through the process of setting up a new 
   ```
 - [ ] **Backup Existing Dotfiles**: Backup any existing dotfiles in your home directory to avoid overwriting important configurations.
   ```bash
-  mkdir -p ~/dotfiles/backup-home-$(date +%Y%m%d)
-  for file in ~/.bashrc ~/.zshrc ~/.gitconfig ~/.roo ~/.cline; do
+  BACKUP_DIR="$HOME/dotfiles/backup-home-$(date +%Y%m%d)"
+  mkdir -p "$BACKUP_DIR"
+  for file in ~/.zshrc ~/.gitconfig ~/.aerospace.toml; do
     if [ -f "$file" ] || [ -L "$file" ] || [ -d "$file" ]; then
-      mv "$file" "~/dotfiles/backup-home-$(date +%Y%m%d)/"
+      mv "$file" "$BACKUP_DIR/"
     fi
   done
   ```
 - [ ] **Setup Dotfiles with Stow**: Navigate to `~/dotfiles` and use Stow to create symlinks for your configurations.
   ```bash
   cd ~/dotfiles
-  stow bash zsh git roocode cline ghostty
+  stow zsh git aerospace
   ```
+  Or run the setup script: `bash ~/dotfiles/setup-dotfiles.sh`
 - [ ] **Verify Symlinks**: Check that symlinks are correctly created in your home directory.
   ```bash
-  ls -la ~/.bashrc
-  ls -la ~/.zshrc
-  ls -la ~/.gitconfig
+  ls -la ~/.zshrc ~/.gitconfig ~/.aerospace.toml
   ```
 
 ## Tool and Environment Setup
@@ -47,7 +47,7 @@ This checklist is designed to guide you through the process of setting up a new 
   ```bash
   chsh -s $(which zsh)
   ```
-- [ ] **Setup Git**: Configure Git with your user information and any additional settings.
+- [ ] **Setup Git**: User name and email are in `git/.gitconfig` when stowed. Override locally if needed:
   ```bash
   git config --global user.name "Your Name"
   git config --global user.email "your.email@example.com"
@@ -58,11 +58,11 @@ This checklist is designed to guide you through the process of setting up a new 
   # Backup iTerm2 configuration
   mkdir -p ~/dotfiles/backup-configs-$(date +%Y%m%d)/iterm2
   cp ~/Library/Preferences/com.googlecode.iterm2.plist ~/dotfiles/backup-configs-$(date +%Y%m%d)/iterm2/
-  
+
   # Backup Raycast configuration
   mkdir -p ~/dotfiles/backup-configs-$(date +%Y%m%d)/raycast
   cp -r ~/Library/Application\ Support/Raycast ~/dotfiles/backup-configs-$(date +%Y%m%d)/raycast/
-  
+
   # Backup .ssh directory (excluding private keys if desired)
   mkdir -p ~/dotfiles/backup-configs-$(date +%Y%m%d)/ssh
   cp -r ~/.ssh/config ~/.ssh/known_hosts ~/dotfiles/backup-configs-$(date +%Y%m%d)/ssh/
@@ -70,17 +70,15 @@ This checklist is designed to guide you through the process of setting up a new 
 
 ## Customization and Verification
 - [ ] **Customize Configurations**: Review and customize your dotfiles as needed for the new system.
-- [ ] **Test Configurations**: Test your shell, Git, and other configurations to ensure they work as expected.
+- [ ] **Test Configurations**: Test your shell, Git, and AeroSpace config to ensure they work as expected.
   ```bash
-  # Test shell configuration
   zsh
-  # Test Git configuration
   git --version
   ```
 - [ ] **Backup New System State**: Create a backup of the initial state of your new system’s dotfiles for future reference.
   ```bash
   mkdir -p ~/dotfiles/backup-new-system-$(date +%Y%m%d)
-  cp ~/.bashrc ~/.zshrc ~/.gitconfig ~/.roo ~/.cline ~/dotfiles/backup-new-system-$(date +%Y%m%d)/
+  cp ~/.zshrc ~/.gitconfig ~/.aerospace.toml ~/dotfiles/backup-new-system-$(date +%Y%m%d)/
   ```
 
 ## Additional Notes
