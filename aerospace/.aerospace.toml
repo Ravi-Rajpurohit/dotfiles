@@ -1,20 +1,19 @@
 # Managed via Stow: ~/dotfiles/aerospace → ~/.aerospace.toml
 
+config-version = 2
+
 # Start AeroSpace at login
 start-at-login = true
 
-# It's not necessary to copy all keys to your config.
-# If the key is missing in your config, "default-config.toml" will serve as a fallback
-
-# You can use it to add commands that run after login to macOS user session.
-# 'start-at-login' needs to be 'true' for 'after-login-command' to work
-# Available commands: https://nikitabobko.github.io/AeroSpace/commands
-after-login-command = []
+# auto-reload-config is in main-branch docs but not released yet (0.20.3).
+# Reload manually: service mode (ctrl-alt-cmd-;) → esc, or `aerospace reload-config`.
 
 # You can use it to add commands that run after AeroSpace startup.
-# 'after-startup-command' is run after 'after-login-command'
-# Available commands : https://nikitabobko.github.io/AeroSpace/commands
+# Available commands: https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = []
+
+# Workspaces that stay alive even when empty or invisible (requires config-version = 2)
+persistent-workspaces = ["1", "2", "8", "9"]
 
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
@@ -121,10 +120,7 @@ ctrl-alt-cmd-shift-right = 'move right'
 ctrl-alt-cmd-1 = 'workspace 1'
 ctrl-alt-cmd-2 = 'workspace 2'
 # ctrl-alt-cmd-3 = 'workspace 3'
-# ctrl-alt-cmd-4 = 'workspace 4'
-# ctrl-alt-cmd-5 = 'workspace 5'
-# ctrl-alt-cmd-6 = 'workspace 6'
-# ctrl-alt-cmd-7 = 'workspace 7'
+
 ctrl-alt-cmd-8 = 'workspace 8'
 ctrl-alt-cmd-9 = 'workspace 9'
 
@@ -153,15 +149,20 @@ ctrl-alt-cmd-z = 'exec-and-forget open -b app.zen-browser.zen'
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-ctrl-alt-cmd-shift-1 = ['move-node-to-workspace 1','workspace 1','fullscreen']
-ctrl-alt-cmd-shift-2 = ['move-node-to-workspace 2','workspace 2','fullscreen']
+# WHY floating + aerospace fullscreen (not either alone, not macos-native-fullscreen):
+# - `layout floating` — one window per workspace, no tile splits; window stays draggable/focusable
+# - `fullscreen on` — aerospace maximizes that floating window to fill the monitor; traffic lights stay visible
+# - NOT `macos-native-fullscreen` — hides title bar/close button and creates a separate Space (ctrl-alt-cmd-f11 only)
+# - `on` not bare `fullscreen` — idempotent on repeat moves; `--no-outer-gaps` — edge-to-edge fill
+ctrl-alt-cmd-shift-1 = ['move-node-to-workspace 1', 'workspace 1', 'layout floating', 'fullscreen on --no-outer-gaps']
+ctrl-alt-cmd-shift-2 = ['move-node-to-workspace 2', 'workspace 2', 'layout floating', 'fullscreen on --no-outer-gaps']
 # ctrl-alt-cmd-shift-3 = 'move-node-to-workspace 3'
 # ctrl-alt-cmd-shift-4 = 'move-node-to-workspace 4'
 # ctrl-alt-cmd-shift-5 = 'move-node-to-workspace 5'
 # ctrl-alt-cmd-shift-6 = 'move-node-to-workspace 6'
 # ctrl-alt-cmd-shift-7 = 'move-node-to-workspace 7'
-ctrl-alt-cmd-shift-8 = ['move-node-to-workspace 8','workspace 8','fullscreen']
-ctrl-alt-cmd-shift-9 = ['move-node-to-workspace 9','workspace 9','fullscreen']
+ctrl-alt-cmd-shift-8 = ['move-node-to-workspace 8', 'workspace 8', 'layout floating', 'fullscreen on --no-outer-gaps']
+ctrl-alt-cmd-shift-9 = ['move-node-to-workspace 9', 'workspace 9', 'layout floating', 'fullscreen on --no-outer-gaps']
 # alt-shift-a = 'move-node-to-workspace A'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
@@ -172,8 +173,9 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 # open aerospace config in vscode
 cmd-ctrl-alt-comma = "exec-and-forget cursor --new-window ~/dotfiles ~/.aerospace.toml"
 
-# Custom
-ctrl-alt-cmd-f11  = 'macos-native-fullscreen'
+# Escape hatch only — true macOS fullscreen (hides menu bar and traffic lights).
+# Default maximize behavior uses aerospace `fullscreen on` everywhere else.
+ctrl-alt-cmd-f11 = 'macos-native-fullscreen'
 
 # IMPORTANT
 # Fix Mission Control Window Sizes
@@ -188,7 +190,7 @@ ctrl-alt-cmd-semicolon = 'mode service'
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
 
-f = ['fullscreen', 'mode main']
+f = ['layout floating', 'fullscreen on --no-outer-gaps', 'mode main']
 # shift-f = ['macos-native-fullscreen', 'mode main']
 
 r = ['mode resize']
@@ -210,63 +212,20 @@ alt-shift-l = ['join-with right', 'mode main']
 # up = 'volume up'
 # shift-down = ['volume set 0', 'mode main']
 
-# FIXME:f - fix the resize from all size.. cant resize from right to left
+# FIXME: floating resize via AppleScript — top-left anchor quirk (see bin/resize-floating-window.sh).
+# TODO: switch arrows to `aerospace resize` when https://github.com/nikitabobko/AeroSpace/issues/9 lands.
 [mode.resize.binding]
-# --- WIDTH ---
-left  = '''exec-and-forget osascript -e '
-tell application "System Events"
-  set frontApp to name of first application process whose frontmost is true
-  tell application process frontApp
-    if (count of windows) > 0 then
-      set winSize to size of front window
-      set item 1 of winSize to (item 1 of winSize) - 50
-      set size of front window to winSize
-    end if
-  end tell
-end tell' '''
-
-right = '''exec-and-forget osascript -e '
-tell application "System Events"
-  set frontApp to name of first application process whose frontmost is true
-  tell application process frontApp
-    if (count of windows) > 0 then
-      set winSize to size of front window
-      set item 1 of winSize to (item 1 of winSize) + 50
-      set size of front window to winSize
-    end if
-  end tell
-end tell' '''
-
-down = '''exec-and-forget osascript -e '
-tell application "System Events"
-  set frontApp to name of first application process whose frontmost is true
-  tell application process frontApp
-    if (count of windows) > 0 then
-      set winSize to size of front window
-      set item 2 of winSize to (item 2 of winSize) + 50
-      set size of front window to winSize
-    end if
-  end tell
-end tell' '''
-
-up = '''exec-and-forget osascript -e '
-tell application "System Events"
-  set frontApp to name of first application process whose frontmost is true
-  tell application process frontApp
-    if (count of windows) > 0 then
-      set winSize to size of front window
-      set item 2 of winSize to (item 2 of winSize) - 50
-      set size of front window to winSize
-    end if
-  end tell
-end tell' '''
+left  = 'exec-and-forget ~/dotfiles/aerospace/bin/resize-floating-window.sh left'
+right = 'exec-and-forget ~/dotfiles/aerospace/bin/resize-floating-window.sh right'
+up    = 'exec-and-forget ~/dotfiles/aerospace/bin/resize-floating-window.sh up'
+down  = 'exec-and-forget ~/dotfiles/aerospace/bin/resize-floating-window.sh down'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 minus = 'resize smart -50'
 equal = 'resize smart +50'
 
-esc = 'mode main' # Keys to exit the mode
-enter = 'mode main' # Keys to exit the mode
+esc = 'mode main'
+enter = 'mode main'
 
 # ────────────────
 # Workspace to monitor assignments
@@ -275,10 +234,7 @@ enter = 'mode main' # Keys to exit the mode
 1 = 'main'     # Main is the MacBook screen, Secondary is the external monitor
 2 = 'secondary'
 # 3 = 'main'
-# 4 = 'secondary'
-# 5 = 'main'
-# 6 = 'secondary'
-# 7 = 'main'
+
 8 = 'secondary'
 9 = 'main'     # MacBook screen → workspace 9 -> Personal Stuff
 
@@ -355,14 +311,11 @@ enter = 'mode main' # Keys to exit the mode
 # --- Workspace 9: Personal Browsing ---
 [[on-window-detected]]
 if.app-id = 'app.zen-browser.zen'
-run = ['layout floating','move-node-to-workspace 9']
+run = ['move-node-to-workspace 9', 'layout floating', 'fullscreen on --no-outer-gaps']
 
 
 # --- GLOBAL CATCH-ALL RULE LAST ---
-# This rule matches all new windows. Because it runs after the specific rules above,
-# it will correctly apply fullscreen to apps that have already been moved.
+# WHY floating + fullscreen on every new window (see move-to-workspace comment above).
+# Specific rules above run first; this catches everything else on open.
 [[on-window-detected]]
-run = ['layout floating']
-
-
-#TODO: automatically-unhide-macos-hidden-apps = true
+run = ['layout floating', 'fullscreen on --no-outer-gaps']
