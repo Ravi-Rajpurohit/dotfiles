@@ -157,9 +157,6 @@ ctrl-alt-cmd-z = 'exec-and-forget open -b app.zen-browser.zen'
 ctrl-alt-cmd-shift-1 = ['move-node-to-workspace 1', 'workspace 1', 'layout floating', 'fullscreen on --no-outer-gaps']
 ctrl-alt-cmd-shift-2 = ['move-node-to-workspace 2', 'workspace 2', 'layout floating', 'fullscreen on --no-outer-gaps']
 # ctrl-alt-cmd-shift-3 = 'move-node-to-workspace 3'
-# ctrl-alt-cmd-shift-4 = 'move-node-to-workspace 4'
-# ctrl-alt-cmd-shift-5 = 'move-node-to-workspace 5'
-# ctrl-alt-cmd-shift-6 = 'move-node-to-workspace 6'
 # ctrl-alt-cmd-shift-7 = 'move-node-to-workspace 7'
 ctrl-alt-cmd-shift-8 = ['move-node-to-workspace 8', 'workspace 8', 'layout floating', 'fullscreen on --no-outer-gaps']
 ctrl-alt-cmd-shift-9 = ['move-node-to-workspace 9', 'workspace 9', 'layout floating', 'fullscreen on --no-outer-gaps']
@@ -248,19 +245,7 @@ enter = 'mode main'
 # run = ['layout floating','move-node-to-workspace 2']
 
 # [[on-window-detected]]
-# if.app-id = 'com.microsoft.VSCodeInsiders'
-# run = ['layout floating','move-node-to-workspace 2']
-
-# [[on-window-detected]]
 # if.app-id = 'com.googlecode.iterm2'
-# run = ['layout floating','move-node-to-workspace 2']
-
-# [[on-window-detected]]
-# if.app-id = 'com.pvncher.repoprompt'
-# run = ['layout floating','move-node-to-workspace 2']
-
-# [[on-window-detected]]
-# if.app-id = 'com.apple.QuickTimePlayerX'
 # run = ['layout floating','move-node-to-workspace 2']
 
 # # --- Workspace 2: Browsing & Data ---
@@ -287,26 +272,6 @@ enter = 'mode main'
 # if.app-id = 'com.tinyspeck.slackmacgap'
 # run = ['layout floating','move-node-to-workspace 5']
 
-# # --- Workspace 6: Productivity ---
-# [[on-window-detected]]
-# if.app-id = 'com.apple.iCal'
-# run = ['layout floating','move-node-to-workspace 6']
-
-# [[on-window-detected]]
-# if.app-id = 'com.apple.mail'
-# run = ['layout floating','move-node-to-workspace 6']
-
-# # --- Personal workspaces (7-9) ---
-
-# # --- Workspace 7: Notes ---
-# [[on-window-detected]]
-# if.app-id = 'md.obsidian'
-# run = ['layout floating','move-node-to-workspace 7']
-
-# # --- Workspace 8: Media ---
-# [[on-window-detected]]
-# if.app-id = 'com.brave.Browser.app.cinhimbnkkaeohfgghhklpknlkffjgod' # YouTube Music
-# run = ['layout floating','move-node-to-workspace 8']
 
 # --- Workspace 9: Personal Browsing ---
 [[on-window-detected]]
