@@ -57,3 +57,24 @@ export PATH="$PATH:/Users/ravi/.lmstudio/bin"
 # End of LM Studio CLI section
 
 export COMPOSE_BAKE=true
+eval "$(zoxide init zsh)"
+
+# Added by Antigravity
+export PATH="/Users/ravi/.antigravity/antigravity/bin:$PATH"
+
+# OpenClaw Completion
+source "/Users/ravi/.openclaw/completions/openclaw.zsh"
+
+# Prefer n-managed Node at /usr/local/bin over Homebrew node (brew shellenv prepends /opt/homebrew/bin).
+export PATH="/usr/local/bin:$PATH"
+
+# Auto-activate Node from .n-node-version, .node-version, .nvmrc, or package.json (like nvm+precmd, but via `n`).
+# Uses chpwd (on cd) + once at startup, not precmd every prompt. See: https://johnlindquist.com/automatically-switch-node-versions-based-on-your-packagejson-and-precmd-in-zsh/
+autoload -Uz add-zsh-hook
+_n_auto_node() {
+  command -v n >/dev/null || return 0
+  [[ -f .n-node-version || -f .node-version || -f .nvmrc || -f package.json ]] || return 0
+  n auto -q 2>/dev/null
+}
+add-zsh-hook chpwd _n_auto_node
+_n_auto_node

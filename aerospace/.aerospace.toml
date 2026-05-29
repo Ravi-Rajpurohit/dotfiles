@@ -126,7 +126,7 @@ ctrl-alt-cmd-2 = 'workspace 2'
 # ctrl-alt-cmd-5 = 'workspace 5'
 # ctrl-alt-cmd-6 = 'workspace 6'
 # ctrl-alt-cmd-7 = 'workspace 7'
-# ctrl-alt-cmd-8 = 'workspace 8'
+ctrl-alt-cmd-8 = 'workspace 8'
 ctrl-alt-cmd-9 = 'workspace 9'
 
 # --- App/launcher shortcuts ---
@@ -146,8 +146,9 @@ ctrl-alt-cmd-q = 'exec-and-forget open -b com.apple.QuickTimePlayerX'
 ctrl-alt-cmd-r = 'exec-and-forget open -b com.pvncher.repoprompt'
 ctrl-alt-cmd-s = 'exec-and-forget open -b com.tinyspeck.slackmacgap'
 ctrl-alt-cmd-t = 'exec-and-forget open -b com.googlecode.iterm2'
-ctrl-alt-cmd-v = 'exec-and-forget open -b com.microsoft.VSCode'
-ctrl-alt-cmd-shift-v = 'exec-and-forget open -b com.microsoft.VSCodeInsiders'
+ctrl-alt-cmd-v = 'exec-and-forget open -b com.todesktop.230313mzl4w4u92' #cursor
+ctrl-alt-cmd-shift-v = 'exec-and-forget open -b com.microsoft.VSCode'
+# ctrl-alt-cmd-shift-v = 'exec-and-forget open -b com.microsoft.VSCodeInsiders'
 ctrl-alt-cmd-y = 'exec-and-forget open -b com.brave.Browser.app.cinhimbnkkaeohfgghhklpknlkffjgod'
 ctrl-alt-cmd-z = 'exec-and-forget open -b app.zen-browser.zen'
 
@@ -160,7 +161,7 @@ ctrl-alt-cmd-shift-2 = ['move-node-to-workspace 2','workspace 2','fullscreen']
 # ctrl-alt-cmd-shift-5 = 'move-node-to-workspace 5'
 # ctrl-alt-cmd-shift-6 = 'move-node-to-workspace 6'
 # ctrl-alt-cmd-shift-7 = 'move-node-to-workspace 7'
-# ctrl-alt-cmd-shift-8 = 'move-node-to-workspace 8'
+ctrl-alt-cmd-shift-8 = ['move-node-to-workspace 8','workspace 8','fullscreen']
 ctrl-alt-cmd-shift-9 = ['move-node-to-workspace 9','workspace 9','fullscreen']
 # alt-shift-a = 'move-node-to-workspace A'
 
@@ -170,7 +171,7 @@ alt-tab = 'workspace-back-and-forth'
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # open aerospace config in vscode
-cmd-ctrl-alt-comma = "exec-and-forget code --new-window ~/dotfiles ~/.aerospace.toml"
+cmd-ctrl-alt-comma = "exec-and-forget cursor --new-window ~/dotfiles ~/.aerospace.toml"
 
 # Custom
 ctrl-alt-cmd-f11  = 'macos-native-fullscreen'
@@ -274,11 +275,11 @@ enter = 'mode main' # Keys to exit the mode
 [workspace-to-monitor-force-assignment]
 1 = 'main'     # Main is the MacBook screen, Secondary is the external monitor
 2 = 'secondary'
-3 = 'main'
-4 = 'secondary'
-5 = 'main'
-6 = 'secondary'
-7 = 'main'
+# 3 = 'main'
+# 4 = 'secondary'
+# 5 = 'main'
+# 6 = 'secondary'
+# 7 = 'main'
 8 = 'secondary'
 9 = 'main'     # MacBook screen → workspace 9 -> Personal Stuff
 
