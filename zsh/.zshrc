@@ -59,12 +59,6 @@ export PATH="$PATH:/Users/ravi/.lmstudio/bin"
 export COMPOSE_BAKE=true
 eval "$(zoxide init zsh)"
 
-# Added by Antigravity
-export PATH="/Users/ravi/.antigravity/antigravity/bin:$PATH"
-
-# OpenClaw Completion
-source "/Users/ravi/.openclaw/completions/openclaw.zsh"
-
 # Prefer n-managed Node at /usr/local/bin over Homebrew node (brew shellenv prepends /opt/homebrew/bin).
 export PATH="/usr/local/bin:$PATH"
 
