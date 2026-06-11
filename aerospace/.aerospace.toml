@@ -125,6 +125,7 @@ ctrl-alt-cmd-8 = 'workspace 8'
 ctrl-alt-cmd-9 = 'workspace 9'
 
 # --- App/launcher shortcuts ---
+# Hyper = ctrl-alt-cmd (remapped globally via Raycast; all shortcuts below use that key)
 ctrl-alt-cmd-a = 'exec-and-forget open -b com.openai.chat'
 ctrl-alt-cmd-b = 'exec-and-forget open -b com.google.Chrome'
 ctrl-alt-cmd-shift-c = 'exec-and-forget open -b com.apple.iCal'
@@ -138,13 +139,14 @@ ctrl-alt-cmd-d = 'exec-and-forget open -b com.mongodb.compass'
 ctrl-alt-cmd-o = 'exec-and-forget open "obsidian://open?vault=Work"'
 ctrl-alt-cmd-shift-o = 'exec-and-forget open "obsidian://open?vault=Personal"'
 ctrl-alt-cmd-q = 'exec-and-forget open -b com.apple.QuickTimePlayerX'
-ctrl-alt-cmd-r = 'exec-and-forget open -b com.pvncher.repoprompt'
+ctrl-alt-cmd-r = 'exec-and-forget open -b io.skyhook.radar' # Radar
+ctrl-alt-cmd-shift-r = 'exec-and-forget open -b app.freelens.Freelens' # Freelens
 ctrl-alt-cmd-s = 'exec-and-forget open -b com.tinyspeck.slackmacgap'
 ctrl-alt-cmd-t = 'exec-and-forget open -b com.googlecode.iterm2'
 ctrl-alt-cmd-v = 'exec-and-forget open -b com.todesktop.230313mzl4w4u92' #cursor
 ctrl-alt-cmd-shift-v = 'exec-and-forget open -b com.microsoft.VSCode'
 # ctrl-alt-cmd-shift-v = 'exec-and-forget open -b com.microsoft.VSCodeInsiders'
-ctrl-alt-cmd-y = 'exec-and-forget open -b com.brave.Browser.app.cinhimbnkkaeohfgghhklpknlkffjgod'
+ctrl-alt-cmd-y = 'exec-and-forget open -b net.imput.helium.app.cinhimbnkkaeohfgghhklpknlkffjgod' # YouTube Music (Helium)
 ctrl-alt-cmd-z = 'exec-and-forget open -b app.zen-browser.zen'
 
 
